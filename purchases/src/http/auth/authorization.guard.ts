@@ -43,7 +43,5 @@ export class AuthorizationGuard implements CanActivate {
     } catch (err) {
       throw new UnauthorizedException();
     }
-
-    return true;
   }
 }

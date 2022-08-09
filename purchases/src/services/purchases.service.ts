@@ -11,7 +11,22 @@ export class PurchasesService {
   constructor(private prisma: PrismaService) {}
 
   listAllPurchases() {
-    return this.prisma.purchase.findMany();
+    return this.prisma.purchase.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
+
+  listAllPurchasesFromCustomer(customerId: string) {
+    return this.prisma.purchase.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      where: {
+        customerId,
+      },
+    });
   }
 
   async createPurchase({ customerId, productId }: CreatePurchaseParams) {
