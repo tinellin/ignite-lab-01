@@ -19,6 +19,12 @@ export class CoursesService {
     });
   }
 
+  getCourseBySlug(slug: string) {
+    return this.prisma.course.findUnique({
+      where: { slug },
+    });
+  }
+
   async createCourse({ title }: CreateCoureParams) {
     const slug = title
       .toLowerCase()
